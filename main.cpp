@@ -44,7 +44,7 @@ void iDFT1D(const int N, const complex* in, complex* out)
 
 
 template <typename T>
-void DFT2D(const int NN, const complex* in, complex* out, T fourier_type)
+void DFT2D(const int N, const complex* in, complex* out, T fourier_type)
 {
 	// process the rows
 	for (int i = 0; i < N; i++)
@@ -53,7 +53,7 @@ void DFT2D(const int NN, const complex* in, complex* out, T fourier_type)
 	}
 
 	// process the columns
-	complex ca[N], cb[N];
+	complex *ca = new complex[N], *cb = new complex[N];
 	for (int i = 0; i < N; i++)
 	{
 		for (int j = 0; j < N; j++)
@@ -73,6 +73,8 @@ void DFT2D(const int NN, const complex* in, complex* out, T fourier_type)
 			out[j * N + i].imag = cb[j].imag;
 		}
 	}
+
+	delete[] ca; delete[] cb;
 }
 
 
