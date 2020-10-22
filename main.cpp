@@ -80,8 +80,7 @@ void DFT2D(const int N, const complex* in, complex* out, T fourier_type)
 
 int main()
 {
-	//Image imageData = readPPM("lena.ppm");
-	Image imageData = readPPM("sunrise.ppm");
+	Image imageData = readPPM("lena.ppm");
 
 	cout << imageData.w << " " << imageData.h << endl;
 	cout << "PROCEEDING..." << endl;
@@ -112,10 +111,10 @@ int main()
 	DFT2D(N, out_b, in_b, iDFT1D);
 
 	cout << "EXECUTION: Creation image for DFT " << endl;
-	savePPM("fourier_optical_out.ppm", N, out_r, out_g, out_b);
+	savePPM("fourier_optical_out.ppm", N, out_r, out_g, out_b, false);
 
 	cout << "EXECUTION: Create image for inverse DFT" << endl;
-	savePPM("fourier_out.ppm", N, in_r, in_g, in_b);
+	savePPM("fourier_out.ppm", N, in_r, in_g, in_b, true);
 
 	delete[] in_r; delete[] in_g; delete[] in_b;
 	delete[] out_r; delete[] out_g; delete[] out_b;
